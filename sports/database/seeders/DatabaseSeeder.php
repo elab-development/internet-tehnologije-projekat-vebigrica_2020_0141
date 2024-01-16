@@ -3,7 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Coach;
+use App\Models\Player;
+use App\Models\Team;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,9 +16,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        return [
-            'name' => fake()->name(),
-            'birth' => fake()->numberBetween(1940, date("Y"))
-        ];
+        User::truncate();
+        Team::truncate();
+        Player::truncate();
+        Coach::truncate();
+
+        User::factory(2)->create();
+
+        Team::factory(5)
+            ->has(Coach::factory(1))
+            ->has(Player::factory(10))
+            ->create();
     }
 }
