@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\CoachController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\TeamController;
@@ -27,6 +28,10 @@ Route::get('/players', [PlayerController::class, 'index']);
 Route::get('/players/paginate', [PlayerController::class, 'indexPaginate']);
 Route::get('/players/{id}', [PlayerController::class, 'show']);
 
+Route::get('/coaches', [CoachController::class, 'index']);
+Route::get('/coaches/paginate', [CoachController::class, 'indexPaginate']);
+Route::get('/coaches/{id}', [CoachController::class, 'show']);
+
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -35,11 +40,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/profile', function (Request $request) {
         return auth()->user();
     });
-    Route::resource('/players', PlayerController::class)
-        ->only(['store', 'update', 'destroy']);
     Route::resource('/teams', TeamController::class)
         ->only(['store', 'update', 'destroy']);
-
+        
+    Route::resource('/players', PlayerController::class)
+        ->only(['store', 'update', 'destroy']);
+    
+    Route::resource('/coaches', CoachController::class)
+        ->only(['store', 'update', 'destroy']);
     
     Route::post('/logout', [AuthController::class, 'logout']);
 });
