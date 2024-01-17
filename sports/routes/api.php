@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\TeamController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/teams', [TeamController::class, 'index']);
+Route::get('/teams/paginate', [TeamController::class, 'indexPaginate']);
+Route::get('/teams/{id}', [TeamController::class, 'show']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
