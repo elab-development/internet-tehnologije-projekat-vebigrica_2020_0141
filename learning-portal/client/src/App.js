@@ -24,6 +24,41 @@ function App() {
               </ProtectedRoute>
             }
           />
+           {/* User Routes */}
+           <Route
+            path='/'
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+
+           {/* Admin Routes */}
+           <Route
+            path='/admin/exams'
+            element={
+              <ProtectedRoute>
+                <Exams />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/admin/exams/add'
+            element={
+              <ProtectedRoute>
+                <AddEditExam />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/admin/exams/edit/:id'
+            element={
+              <ProtectedRoute>
+                <AddEditExam />
+              </ProtectedRoute>
+            }
+          />
        
        </Routes>
     </BrowserRouter>
