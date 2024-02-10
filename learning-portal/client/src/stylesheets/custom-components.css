@@ -1,0 +1,6 @@
+.card {
+    box-shadow: 0 0 1px var(--dark);
+  }
+  .divider {
+    border-bottom: 1.5px solid var(--dark);
+  }

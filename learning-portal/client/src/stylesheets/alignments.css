@@ -4,12 +4,15 @@
     height: 100vh;
   }
   .h-75 {
+    height: 75vh;
     height: 75%;
   }
   .h-50 {
+    height:50vh;
     height: 50%;
   }
   .h-25 {
+    height: 25vh;
     height: 25%;
   }
 
@@ -18,13 +21,19 @@
 .w-screen {
     width: 100vw;
   }
+  .w-100{
+    width: 100%;
+  }
   .w-75 {
+    width: 75vw;
     width: 75%;
   }
   .w-50 {
+    width: 50vw;
     width: 50%;
   }
   .w-25 {
+    width: 25vw;
     width: 25%;
   }
 
