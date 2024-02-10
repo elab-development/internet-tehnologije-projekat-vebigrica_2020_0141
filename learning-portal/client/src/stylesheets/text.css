@@ -1,5 +1,13 @@
 /* Text Sizes */
 
+.text-4xl {
+  font-size: 2rem;
+  line-height: 3.5rem;
+}
+.text-3xl {
+  font-size: 2rem;
+  line-height: 3.5rem;
+}
 .text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
@@ -24,3 +32,12 @@
     font-size: 0.75rem;
     line-height: 0.875rem;
   }
+  /* Text Alignments */
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
