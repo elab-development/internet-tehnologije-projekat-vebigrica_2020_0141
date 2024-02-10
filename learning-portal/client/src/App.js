@@ -4,8 +4,9 @@ import './App.css';
 function App() {
   return (
     <div className='App'>
-      <h1>Learning Portal</h1>
-     
+      <div className='h-screen bg-primary'>
+        <h1 className='color-secondary'>Learning Portal</h1>
+      </div> 
     </div>
   );
 }
