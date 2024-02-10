@@ -1,10 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Form } from 'antd';
+import { Form, message } from 'antd';
+
+import { registerUser } from '../../../api/users';
 
 const Register = () =>{
-    const onFinish=(values) =>{
-        console.log(values);
+  const onFinish = async (values) => {
+    try {
+      dispatch(showLoading());
+      const response = await registerUser(values);
+      dispatch(hideLoading());
+      if (response.success) {
+        message.success(response.message);
+        navigate('/login');
+      } else {
+        message.error(response.message);
+      }
+    } catch (err) {
+      dispatch(hideLoading());
+      message.error(err.message);
+    }
 }
 };
 
