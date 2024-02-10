@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/userModel');
 const bcrypt = require('bcryptjs');
+const authMiddleware = require('../middlewares/authMiddleware');
 
 // User Registration
 router.post('/register', async (req, res) => {
@@ -33,5 +34,64 @@ router.post('/register', async (req, res) => {
       });
     }
   });
+
+  // User Login
+router.post('/login', async (req, res) => {
+  try {
+    // Check if user exists
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+      return res.status(200).send({
+        message: 'User does not exist',
+        success: false,
+      });
+    }
+
+    // Decrypting & Checking passwords
+    const validPassword = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
+    if (!validPassword) {
+      return res.status(200).send({
+        message: 'Wrong password!',
+        success: false,
+      });
+    }
+
+    // Creating Token & Sending it
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+      expiresIn: '1d',
+    });
+    res.send({
+      message: 'User logged in successfully',
+      success: true,
+      data: token,
+    });
+  } catch (err) {
+    res.status(500).send({
+      message: err.message,
+      data: err,
+      success: false,
+    });
+  }
+});
+// Get User Info
+router.post('/get-user-info', authMiddleware, async (req, res) => {
+  try {
+    const user = await User.findById(req.body.userId);
+    res.send({
+      message: 'User info fetched',
+      success: true,
+      data: user,
+    });
+  } catch (err) {
+    res.status(500).send({
+      message: err.message,
+      data: err,
+      success: false,
+    });
+  }
+});
 
   module.exports = router;

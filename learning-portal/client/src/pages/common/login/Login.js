@@ -3,9 +3,26 @@ import { Form } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () =>{
-  const onFinish=(values) =>{
-    console.log(values);
+  const navigate = useNavigate();
   }
+  const onFinish = async (values) => {
+    try {
+      dispatch(showLoading());
+      const response = await loginUser(values);
+      dispatch(hideLoading());
+      if (response.success) {
+        message.success(response.message);
+        localStorage.setItem('token', response.data);
+        navigate('/');
+        window.location.reload(false);
+      } else {
+        message.error(response.message);
+      }
+    } catch (err) {
+      dispatch(hideLoading());
+      message.error(err.message);
+    }
+  
 
     return (
         <div className='flex justify-center items-center h-screen w-screen bg-primary'>
