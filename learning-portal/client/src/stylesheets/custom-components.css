@@ -4,3 +4,10 @@
   .divider {
     border-bottom: 1.5px solid var(--dark);
   }
+  .divider-title {
+    border-bottom: 2px solid var(--primary);
+    margin: 20px 0px;
+  }
+  .pointer {
+    cursor: pointer;
+  }

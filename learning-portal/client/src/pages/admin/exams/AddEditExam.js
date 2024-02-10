@@ -1,13 +1,38 @@
 import React from 'react';
 import { Col, Form, Row, Table, Tabs, message } from 'antd';
+import { useNavigate} from 'react-router-dom';
 
 import PageTitle from '../../../components/PageTitle';
 
 const AddEditExam = () =>{
-  const onFinish =  (values) => {
-    console.log(values);
 
+  const navigate = useNavigate();
+
+  const onFinish = async (values) => {
+    try {
+      let response;
+      dispatch(showLoading());
+
+      if (params.id) {
+        response = await editExam({ ...values, examId: params.id });
+      } else {
+        response = await addExam(values);
+      }
+
+      if (response.success) {
+        message.success(response.message);
+        navigate('/admin/exams');
+      } else {
+        message.error(response.message);
+      }
+
+      dispatch(hideLoading());
+    } catch (err) {
+      dispatch(hideLoading());
+      message.error(err.message);
+    }
   };
+
   return (
     <div className='pt-2'>
       <PageTitle title={`${params.id ? 'Edit' : 'Add'} Exam`} />
