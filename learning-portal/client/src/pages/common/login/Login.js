@@ -1,7 +1,12 @@
 import React from 'react';
 import { Form } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () =>{
+  const onFinish=(values) =>{
+    console.log(values);
+  }
+
     return (
         <div className='flex justify-center items-center h-screen w-screen bg-primary'>
           <div className='card w-400 p-3 bg-light radius-10'>
@@ -21,6 +26,11 @@ const Login = () =>{
                 >
                   LOGIN
                 </button>
+                <div className='mt-2 mb-m15 text-center'>
+              <Link to='/register' className='text-color-primary'>
+                Not a member yet? Register
+              </Link>
+            </div>
               </Form>
             </div>
           </div>
