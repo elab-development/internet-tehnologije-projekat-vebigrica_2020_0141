@@ -15,6 +15,9 @@
     height: 25vh;
     height: 25%;
   }
+  .mb-1 {
+    margin-bottom: 10px;
+  }
 
   /* Width Classes */
 

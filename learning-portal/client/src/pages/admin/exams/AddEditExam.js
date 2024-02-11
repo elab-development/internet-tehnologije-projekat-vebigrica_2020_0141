@@ -5,12 +5,14 @@ import { useDispatch } from 'react-redux';
 
 import PageTitle from '../../../components/PageTitle';
 import { showLoading, hideLoading } from '../../../redux/loaderSlice';
+import AddEditQuestion from './AddEditQuestion';
 
 const AddEditExam = () =>{
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [examData, setExamData] = useState(null);
+  const [showQuestionModal, setShowQuestionModal] = useState(false);
   const params = useParams();
 
   const onFinish = async (values) => {

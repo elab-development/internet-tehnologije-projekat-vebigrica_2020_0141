@@ -61,3 +61,15 @@ export const destroyExam = async (payload) => {
     return err.response.data;
   }
 };
+// Add Question to Exam
+export const addQuestion = async (payload) => {
+  try {
+    const response = await axiosInstance.post(
+      'http://localhost:5000/api/exams/add-question-to-exam',
+      payload
+    );
+    return response.data;
+  } catch (err) {
+    return err.response.data;
+  }
+};
