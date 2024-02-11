@@ -85,3 +85,15 @@ export const editQuestion = async (payload) => {
     return err.response.data;
   }
 };
+// Delete Question
+export const destroyQuestion = async (payload) => {
+  try {
+    const response = await axiosInstance.post(
+      'http://localhost:5000/api/exams/delete-question-in-exam',
+      payload
+    );
+    return response.data;
+  } catch (err) {
+    return err.response.data;
+  }
+};

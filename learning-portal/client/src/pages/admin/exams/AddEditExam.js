@@ -6,7 +6,12 @@ import { useDispatch } from 'react-redux';
 import PageTitle from '../../../components/PageTitle';
 import { showLoading, hideLoading } from '../../../redux/loaderSlice';
 import AddEditQuestion from './AddEditQuestion';
-
+import {
+  addExam,
+  editExam,
+  getExamById,
+  destroyQuestion,
+} from '../../../api/exams';
 const AddEditExam = () =>{
 
   const dispatch = useDispatch();
@@ -61,6 +66,25 @@ const AddEditExam = () =>{
     if (params.id) {
       getExamDetails();
     }
+    const deleteQuestion = async (questionId) => {
+      try {
+        dispatch(showLoading());
+        const response = await destroyQuestion({
+          questionId,
+          examId: params.id,
+        });
+        dispatch(hideLoading());
+  
+        if (response.success) {
+          message.success('Question deleted successfully');
+          getExamDetails();
+        } else {
+          message.error(response.message);
+        }
+      } catch (err) {
+        message.error(err.message);
+      }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id]);
   const questionsColumns = [
