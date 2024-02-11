@@ -13,6 +13,7 @@ const AddEditExam = () =>{
   const navigate = useNavigate();
   const [examData, setExamData] = useState(null);
   const [showQuestionModal, setShowQuestionModal] = useState(false);
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
   const params = useParams();
 
   const onFinish = async (values) => {
@@ -62,7 +63,60 @@ const AddEditExam = () =>{
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id]);
-
+  const questionsColumns = [
+    {
+      title: 'Question',
+      dataIndex: 'name',
+    },
+    {
+      title: 'Options',
+      dataIndex: 'options',
+      render: (text, record) => {
+        return Object.keys(record.options).map((key) => {
+          return (
+            <div
+              key={key}
+              className={`${
+                key === record.correctOption
+                  ? 'text-color-success text-bold'
+                  : 'text-color-danger'
+              } `}
+            >
+              {key} : {record.options[key]}
+            </div>
+          );
+        });
+      },
+    },
+    // {
+    //   title: 'Correct Answer',
+    //   dataIndex: 'correctOption',
+    //   render: (text, record) => {
+    //     return `${record.correctOption}: ${record.options[text]}`;
+    //   },
+    // },
+    {
+      title: 'Actions',
+      dataIndex: 'action',
+      render: (text, record) => (
+        <div className='flex gap-1 items-center'>
+          <i
+            className='ri-edit-box-line pointer table-action'
+            onClick={() => {
+              setSelectedQuestion(record);
+              setShowQuestionModal(true);
+            }}
+          ></i>
+          <i
+            className='ri-delete-bin-line pointer table-action-delete'
+            onClick={() => {
+              deleteQuestion(record._id);
+            }}
+          ></i>
+        </div>
+      ),
+    },
+  ];
   return (
     <div className='pt-2'>
       <PageTitle title={`${params.id ? 'Edit' : 'Add'} Exam`} />

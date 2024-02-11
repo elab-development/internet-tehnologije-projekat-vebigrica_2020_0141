@@ -41,3 +41,14 @@
 .text-left {
   text-align: left;
 }
+.text-color-success {
+  color: var(--success);
+}
+.text-color-danger {
+  color: var(--danger);
+}
+
+/* Text Weight */
+.text-bold {
+  font-weight: bold;
+}

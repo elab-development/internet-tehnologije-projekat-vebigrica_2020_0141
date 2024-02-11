@@ -23,7 +23,8 @@ router.post('/get-all-exams', authMiddleware, async (req, res) => {
 // Get Exam
 router.post('/get-exam-by-id', authMiddleware, async (req, res) => {
   try {
-    const exam = await Exam.findById(req.body.examId).populate('questions');
+    const exam  = await Exam.findById(req.body.examId).populate('questions');
+    
     res.send({
       message: 'Exam fetched successfully',
       data: exam,
