@@ -113,7 +113,8 @@ const ProtectedRoute = ({ children }) => {
       }
       if (
         activeRoute.includes('/user/write-exam') &&
-        paths.includes('/user/write-exam')
+        paths.includes('/user/write-exam') 
+        
       ) {
         return true;
       }

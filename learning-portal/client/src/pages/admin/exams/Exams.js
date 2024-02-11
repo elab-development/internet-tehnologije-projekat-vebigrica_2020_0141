@@ -66,6 +66,22 @@ const Exams = () => {
       message.error(err.message);
     }
   };
+  const deleteExam = async (examId) => {
+    try {
+      dispatch(showLoading());
+      const response = await destroyExam({ examId });
+      dispatch(hideLoading());
+      if (response.success) {
+        message.success(response.message);
+        getExamsData();
+      } else {
+        message.error(response.message);
+      }
+    } catch (err) {
+      dispatch(hideLoading());
+      message.error(err.message);
+    }
+  };
   useEffect(() => {
     getExamsData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
