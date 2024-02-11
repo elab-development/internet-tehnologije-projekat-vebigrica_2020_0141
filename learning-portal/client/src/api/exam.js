@@ -37,3 +37,15 @@ export const addExam = async (payload) => {
       return err.response.data;
     }
   };
+  // Edit Exam
+export const editExam = async (payload) => {
+  try {
+    const response = await axiosInstance.post(
+      'http://localhost:5000/api/exams/edit-exam-by-id',
+      payload
+    );
+    return response.data;
+  } catch (err) {
+    return err.response.data;
+  }
+};

@@ -10,6 +10,8 @@ const AddEditExam = () =>{
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [examData, setExamData] = useState(null);
+  const params = useParams();
 
   const onFinish = async (values) => {
     try {
@@ -36,6 +38,28 @@ const AddEditExam = () =>{
       message.error(err.message);
     }
   };
+  const getExamDetails = async () => {
+    try {
+      dispatch(showLoading());
+      const response = await getExamById({ examId: params.id });
+      dispatch(hideLoading());
+      if (response.success) {
+        setExamData(response.data);
+      } else {
+        message.error(response.message);
+      }
+    } catch (err) {
+      dispatch(hideLoading());
+      message.error(err.message);
+    }
+  };
+
+  useEffect(() => {
+    if (params.id) {
+      getExamDetails();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params.id]);
 
   return (
     <div className='pt-2'>

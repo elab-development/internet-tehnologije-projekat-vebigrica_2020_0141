@@ -66,5 +66,27 @@ router.post('/add', authMiddleware, async (req, res) => {
       });
     }
   });
+  // Edit Exam
+router.post('/edit-exam-by-id', authMiddleware, async (req, res) => {
+  try {
+    const response = await Exam.findByIdAndUpdate(req.body.examId, req.body);
+    if (!response) {
+      return res.status(200).send({
+        message: 'Exam does not exist',
+        success: false,
+      });
+    }
+    res.send({
+      message: 'Exam updated successfully',
+      success: true,
+    });
+  } catch (err) {
+    res.status(500).send({
+      message: err.message,
+      data: err,
+      success: false,
+    });
+  }
+});
 
   module.exports = router;
