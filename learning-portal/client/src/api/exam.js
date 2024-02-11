@@ -73,3 +73,15 @@ export const addQuestion = async (payload) => {
     return err.response.data;
   }
 };
+// Edit Question
+export const editQuestion = async (payload) => {
+  try {
+    const response = await axiosInstance.post(
+      'http://localhost:5000/api/exams/edit-question-in-exam',
+      payload
+    );
+    return response.data;
+  } catch (err) {
+    return err.response.data;
+  }
+};
