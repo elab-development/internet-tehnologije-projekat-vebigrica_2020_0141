@@ -111,7 +111,7 @@ const AddEditExam = () =>{
                 </Col>
               </Row>
               <div className='flex justify-end gap-2'>
-                <button
+              <button
                   className='primary-outlined-btn flex items-center pointer gap-1 mt-2'
                   type='button'
                   onClick={() => navigate('/admin/exams')}
@@ -137,7 +137,7 @@ const AddEditExam = () =>{
                   >
                     <i className='ri-add-line text-xl'></i>
                     <span>ADD QUESTION</span>
-                  </button>
+                  </button>x``
                 </div>
                 <Table
                   columns={questionsColumns}
