@@ -1,10 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Form, message } from 'antd';
+import { useDispatch } from 'react-redux';
 
 import { registerUser } from '../../../api/users';
+import { showLoading, hideLoading } from '../../../redux/loaderSlice';
 
 const Register = () =>{
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const onFinish = async (values) => {
     try {
       dispatch(showLoading());

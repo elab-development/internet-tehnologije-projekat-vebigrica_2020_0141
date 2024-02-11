@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { getUserInfo } from '../api/users';
 import { setUser } from '../redux/usersSlice';
+import { showLoading, hideLoading } from '../redux/loaderSlice';
 
 const ProtectedRoute = ({ children }) => {
     const { user } = useSelector((state) => state.users);

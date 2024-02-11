@@ -1,14 +1,17 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Login from './pages/common/login/Login';
 import Register from './pages/common/register/Register';
 
 import ProtectedRoute from './components/ProtectedRoute';
+import LoaderSpinner from './components/LoaderSpinner';
 
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const { loading } = useSelector((state) => state.loader);
   return (
     <>
     

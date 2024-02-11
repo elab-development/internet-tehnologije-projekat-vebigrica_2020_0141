@@ -1,16 +1,20 @@
 import React from 'react';
 import { Col, Form, Row, Table, Tabs, message } from 'antd';
 import { useNavigate} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import PageTitle from '../../../components/PageTitle';
+import { showLoading, hideLoading } from '../../../redux/loaderSlice';
 
 const AddEditExam = () =>{
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onFinish = async (values) => {
     try {
       let response;
+      
       dispatch(showLoading());
 
       if (params.id) {
@@ -25,7 +29,7 @@ const AddEditExam = () =>{
       } else {
         message.error(response.message);
       }
-
+      
       dispatch(hideLoading());
     } catch (err) {
       dispatch(hideLoading());

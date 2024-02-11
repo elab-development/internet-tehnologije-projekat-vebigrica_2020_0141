@@ -1,8 +1,12 @@
 import React from 'react';
 import { Form } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import { showLoading, hideLoading } from '../../../redux/loaderSlice';
 
 const Login = () =>{
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   }
   const onFinish = async (values) => {
