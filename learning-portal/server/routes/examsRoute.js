@@ -2,6 +2,42 @@ const router = require('express').Router();
 const Exam = require('../models/examModel');
 const authMiddleware = require('../middlewares/authMiddleware');
 
+// Get Exams
+router.post('/get-all-exams', authMiddleware, async (req, res) => {
+  try {
+    const exams = await Exam.find({});
+    res.send({
+      message: 'Exams fetched successfully',
+      data: exams,
+      success: true,
+    });
+  } catch (err) {
+    res.status(500).send({
+      message: err.message,
+      data: err,
+      success: false,
+    });
+  }
+});
+
+// Get Exam
+router.post('/get-exam-by-id', authMiddleware, async (req, res) => {
+  try {
+    const exam = await Exam.findById(req.body.examId).populate('questions');
+    res.send({
+      message: 'Exam fetched successfully',
+      data: exam,
+      success: true,
+    });
+  } catch (err) {
+    res.status(500).send({
+      message: err.message,
+      data: err,
+      success: false,
+    });
+  }
+});
+
 // Add Exam
 router.post('/add', authMiddleware, async (req, res) => {
     try {

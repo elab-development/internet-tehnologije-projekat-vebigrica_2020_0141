@@ -36,6 +36,9 @@
     width: 25vw;
     width: 25%;
   }
+  .table-px-2 {
+    padding: 0px 20px;
+  }
 
   /* Flex Alignment Classes */
 
@@ -81,4 +84,13 @@
   .gap-5 {
     gap: 50px;
   }
+  @media screen and (max-width: 1200px) {
+    .table-p-2 {
+      padding: 0px 10px;
+    }
   
+    .ant-col-6 {
+      flex: 0 0 50% !important;
+      max-width: calc(50% - 30px) !important;
+    }
+  }
