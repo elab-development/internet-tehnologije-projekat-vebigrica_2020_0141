@@ -1,0 +1,99 @@
+/* Heigh Classes */
+
+.h-screen {
+    height: 100vh;
+  }
+  .h-75 {
+    height: 75vh;
+    height: 75%;
+  }
+  .h-50 {
+    height:50vh;
+    height: 50%;
+  }
+  .h-25 {
+    height: 25vh;
+    height: 25%;
+  }
+  .mb-1 {
+    margin-bottom: 10px;
+  }
+
+  /* Width Classes */
+
+.w-screen {
+    width: 100vw;
+  }
+  .w-100{
+    width: 100%;
+  }
+  .w-75 {
+    width: 75vw;
+    width: 75%;
+  }
+  .w-50 {
+    width: 50vw;
+    width: 50%;
+  }
+  .w-25 {
+    width: 25vw;
+    width: 25%;
+  }
+  .table-px-2 {
+    padding: 0px 20px;
+  }
+
+  /* Flex Alignment Classes */
+
+.flex {
+    display: flex;
+  }
+  .flex-col {
+    flex-direction: column;
+  }
+  .justify-center {
+    justify-content: center;
+  }
+  .justify-between {
+    justify-content: space-between;
+  }
+  .justify-start {
+    justify-content: flex-start;
+  }
+  .justify-end {
+    justify-content: flex-end;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .items-start {
+    align-items: flex-start;
+  }
+  .items-end {
+    align-items: flex-end;
+  }
+  .gap-1 {
+    gap: 10px;
+  }
+  .gap-2 {
+    gap: 20px;
+  }
+  .gap-3 {
+    gap: 30px;
+  }
+  .gap-4 {
+    gap: 40px;
+  }
+  .gap-5 {
+    gap: 50px;
+  }
+  @media screen and (max-width: 1200px) {
+    .table-p-2 {
+      padding: 0px 10px;
+    }
+  
+    .ant-col-6 {
+      flex: 0 0 50% !important;
+      max-width: calc(50% - 30px) !important;
+    }
+  }
